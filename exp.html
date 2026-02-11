@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boss 429 Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BASE ================= */
+
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:
+radial-gradient(circle at top,#8b0000,transparent 45%),
+radial-gradient(circle at bottom,#111,transparent 45%),
+black;
+color:white;
+overflow:hidden;
+text-align:center;
+}
+
+.page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(4px);
+}
+
+/* ================= TEXT & BUTTON ================= */
+
+h1{
+font-size:3rem;
+letter-spacing:3px;
+}
+
+button{
+padding:14px 40px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:#b30000;
+color:white;
+cursor:pointer;
+box-shadow:0 0 25px red;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 45px red;
+}
+
+/* ================= MUSTANG CAKE ================= */
+
+.cake{
+width:360px;
+height:90px;
+background:linear-gradient(#1a1a1a,#000);
+border-radius:22px;
+position:relative;
+border:3px solid #b30000;
+box-shadow:0 0 45px red;
+}
+
+/* roof */
+.cake .roof{
+width:170px;
+height:50px;
+background:#111;
+position:absolute;
+top:-40px;
+left:95px;
+border-radius:25px 25px 10px 10px;
+border:2px solid #b30000;
+}
+
+/* racing stripe */
+.cake .stripe{
+width:40px;
+height:100%;
+background:#b30000;
+position:absolute;
+left:160px;
+top:0;
+}
+
+/* wheels */
+.wheel{
+width:50px;
+height:50px;
+background:#111;
+border-radius:50%;
+border:4px solid #b30000;
+position:absolute;
+bottom:-25px;
+}
+.wheel.left{left:45px;}
+.wheel.right{right:45px;}
+
+/* candles */
+.candle{
+width:18px;
+height:80px;
+background:white;
+position:absolute;
+top:-80px;
+border-radius:6px;
+}
+.candle.left{left:150px;}
+.candle.right{left:190px;}
+
+/* flame */
+.flame{
+width:14px;
+height:24px;
+background:linear-gradient(orange,yellow);
+border-radius:50%;
+position:absolute;
+top:-26px;
+left:2px;
+animation:flicker .3s infinite;
+}
+@keyframes flicker{
+50%{transform:scale(1.2);}
+}
+
+/* ================= PHOTOS ================= */
+
+.photos{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+max-width:700px;
+}
+
+.photos img{
+width:90px;
+height:120px;
+object-fit:cover;
+margin:8px;
+border-radius:6px;
+border:2px solid #b30000;
+box-shadow:0 0 12px red;
+}
+
+/* ================= SONG PAGE ================= */
+
+.song-img{
+width:260px;
+border-radius:16px;
+cursor:pointer;
+border:3px solid #b30000;
+box-shadow:0 0 30px red;
+}
+
+.caption{
+margin-top:18px;
+font-size:14px;
+color:#ffb3b3;
+}
+
+/* ================= FINAL ================= */
+
+#final{
+font-size:3.8rem;
+color:#ff1a1a;
+text-shadow:0 0 45px red;
+letter-spacing:4px;
+}
+
+.heart,.popper{
+position:absolute;
+font-size:28px;
+animation:fall 5s linear infinite;
+}
+@keyframes fall{
+0%{top:-10%;}
+100%{top:110%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 : GARAGE -->
+<div class="page" id="page1" style="display:flex;">
+<h1>ARCHI'S GARAGE</h1>
+<p style="letter-spacing:3px;color:#ff4d4d;">BOSS 429 ONLINE</p>
+<p style="font-size:14px;color:#ffb3b3;">
+Ignition ready<br>
+Fuel pressure stable
+</p>
+<button onclick="showCake()">START ENGINE</button>
+</div>
+
+<!-- PAGE 2 : MUSTANG CAKE -->
+<div class="page" id="page2">
+
+<div class="cake">
+<div class="roof"></div>
+<div class="stripe"></div>
+
+<div class="wheel left"></div>
+<div class="wheel right"></div>
+
+<div class="candle left">
+<div class="flame" id="f1"></div>
+</div>
+
+<div class="candle right">
+<div class="flame" id="f2"></div>
+</div>
+</div>
+
+<button id="cakeBtn" style="display:none" onclick="showPhotos()">CONTINUE</button>
+</div>
+
+<!-- PAGE 3 : PHOTOS -->
+<div class="page" id="page3">
+<h1>MEMORIES</h1>
+
+<div class="photos">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+<img src="photo7.jpg">
+</div>
+
+<button onclick="showSongs()">CONTINUE</button>
+</div>
+
+<!-- PAGE 4 : SONGS -->
+<div class="page" id="page4">
+<h1 id="songText"></h1>
+<img id="songImg" class="song-img" onclick="playSong()">
+<p class="caption">(Tap image to play song)</p>
+<button onclick="nextSong()">NEXT</button>
+</div>
+
+<!-- PAGE 5 : FINAL -->
+<div class="page" id="page5">
+<div id="final">HAPPY BIRTHDAY<br>PASANDIDA SHAQS 🏁</div>
+</div>
+
+<!-- AUDIO -->
+<audio id="player"></audio>
+<audio id="revSound" src="rev.mp3"></audio>
+
+<script>
+
+let currentSong=0;
+
+const songs=[
+{img:"raabta.jpg",audio:"raabta.mp3",text:"Some people feel like destiny in human form… and with you, it feels like Raabta."},
+{img:"tumsehi.jpg",audio:"tumsehi.mp3",text:"Every little moment with you somehow turns into a memory called Tum Se Hi."},
+{img:"duniya.jpg",audio:"Duniyaa.mp3",text:"I don’t know how you became so important to me, but now you are my Duniya."},
+{img:"dildara.jpg",audio:"dildara.mp3",text:"When you’re okay, my whole world feels okay...cause you are my dildara"},
+{img:"mainhoonsathtere.jpg",audio:"mainhoonsaathtere.mp3",text:"No matter how much time passes, know that Main Hoon Saath Tere."}
+
+];
+
+function hideAll(){
+document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+}
+
+function showCake(){
+document.getElementById("revSound").play();
+setTimeout(()=>{
+hideAll();
+page2.style.display="flex";
+
+setTimeout(()=>{
+f1.style.display="none";
+f2.style.display="none";
+cakeBtn.style.display="inline-block";
+},3500);
+
+},700);
+}
+
+function showPhotos(){
+hideAll();
+page3.style.display="flex";
+}
+
+function showSongs(){
+hideAll();
+page4.style.display="flex";
+loadSong();
+}
+
+function loadSong(){
+songImg.src=songs[currentSong].img;
+songText.innerText=songs[currentSong].text;
+player.src=songs[currentSong].audio;
+}
+
+function playSong(){ player.play(); }
+
+function nextSong(){
+player.pause();
+currentSong++;
+if(currentSong<songs.length){
+loadSong();
+}else{
+showFinal();
+}
+}
+
+function showFinal(){
+hideAll();
+page5.style.display="flex";
+makeRain();
+}
+
+function makeRain(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.innerHTML="❤️";
+h.className="heart";
+h.style.left=Math.random()*100+"%";
+document.body.appendChild(h);
+
+let p=document.createElement("div");
+p.innerHTML="🎉";
+p.className="popper";
+p.style.left=Math.random()*100+"%";
+document.body.appendChild(p);
+},300);
+}
+
+</script>
+
+</body>
+</html>
